@@ -1,5 +1,7 @@
-const Tablar = (konu) => {
-  // GÖREV 3
+import axios from 'axios';
+
+//const tab= ["javascript", "bootstrap", "teknoloji"]
+// GÖREV 3
   // ---------------------
   // Tek argümanı bir dizi ("konu") olan bu fonksiyonu uygulayın.
   // Örnek olarak, konu dizisi şu şekilde deklare edilmişse ['javascript', 'bootstrap', 'teknoloji']
@@ -13,9 +15,52 @@ const Tablar = (konu) => {
   //   <div class="tab">teknoloji</div>
   // </div>
   //
+
+const Tablar = (konu) => {
+
+  const TopicDiv = document.createElement("div");
+  TopicDiv.classList.add("topics");
+
+  const javascriptTab=document.createElement("div");
+  javascriptTab.classList.add("tab");
+  TopicDiv.appendChild(javascriptTab);
+
+  const bootstrapTab=document.createElement("div");
+  bootstrapTab.classList.add("tab");
+  TopicDiv.appendChild(bootstrapTab);
+
+  const teknolojiTab=document.createElement("div");
+  teknolojiTab.classList.add("tab");
+  TopicDiv.appendChild(teknolojiTab);
+  
+  const jquery=document.createElement("div");
+  jquery.classList.add("tab");
+  TopicDiv.appendChild(jquery);
+  const nodejs=document.createElement("div");
+  nodejs.classList.add("tab");
+  TopicDiv.appendChild(nodejs);
+  
+  javascriptTab.textContent=konu[0];
+  bootstrapTab.textContent=konu[1];
+  teknolojiTab.textContent=konu[2];
+  jquery.textContent=konu[3];
+  nodejs.textContent=konu[4];
+  //Aşağıdakiler gibi döngü kurmaya çalıştım fakat olmadı. Oluşturduğum fonksiyon çalıştı ama biraz ilkel geldi. :/
+  /*const tabAll= document.querySelectorAll(".tab");
+  for(let i=0; i<konu.length; i++){
+    tabAll[0].textContent=konu[i];
+  }*/
+  /*tabAll.forEach((item)=>{
+    item.textContent=konu[item];
+  })*/
+
+  return TopicDiv;
+  
 }
 
-const tabEkleyici = (secici) => {
+//console.log(Tablar(['javascript', 'bootstrap', 'teknoloji', 'jquery', 'node.js']))
+
+
   // GÖREV 4
   // ---------------------
   // Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
@@ -23,6 +68,23 @@ const tabEkleyici = (secici) => {
   // Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
   // Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
   //
+
+const tabEkleyici = (secici) => {
+
+  const secTab= document.querySelector(secici);
+
+  axios({
+		method: 'get',
+		url: 'http://localhost:5001/api/konular',
+	})
+	.then(function (response) {
+		console.log(response)
+		secTab.appendChild(Tablar(response.data.konular))
+	})
+	
 }
+
+
+
 
 export { Tablar, tabEkleyici }

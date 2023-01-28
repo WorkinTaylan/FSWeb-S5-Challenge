@@ -31,12 +31,12 @@ const Header = (baslik, tarih, yazi) => {
   //
 }
 
-const a =Header("Türkiye", "8 Kasim", "bir takim haberler")
+const basliklar =Header("Türkiye", "8 Kasim", "bir takim haberler")
 
 const headerEkleyici = (secici) => {
 
   const sec= document.querySelector(secici);
-  sec.appendChild(a)
+  sec.appendChild(basliklar)
 
   return sec;
   
