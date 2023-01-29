@@ -21,7 +21,14 @@ const Tablar = (konu) => {
   const TopicDiv = document.createElement("div");
   TopicDiv.classList.add("topics");
 
-  const javascriptTab=document.createElement("div");
+  konu.forEach((item,i)=>{
+    item=document.createElement("div");
+    item.setAttribute("class", "tab");
+    item.textContent=konu[i];
+    TopicDiv.appendChild(item);
+  });
+//İlk versiyonda yaptığım yol //
+  /*const javascriptTab=document.createElement("div");
   javascriptTab.classList.add("tab");
   TopicDiv.appendChild(javascriptTab);
 
@@ -44,21 +51,15 @@ const Tablar = (konu) => {
   bootstrapTab.textContent=konu[1];
   teknolojiTab.textContent=konu[2];
   jquery.textContent=konu[3];
-  nodejs.textContent=konu[4];
-  //Aşağıdakiler gibi döngü kurmaya çalıştım fakat olmadı. Oluşturduğum fonksiyon çalıştı ama biraz ilkel geldi. :/
-  /*const tabAll= document.querySelectorAll(".tab");
-  for(let i=0; i<konu.length; i++){
-    tabAll[0].textContent=konu[i];
-  }*/
-  /*tabAll.forEach((item)=>{
-    item.textContent=konu[item];
-  })*/
+  nodejs.textContent=konu[4];*/
+  
+ 
 
   return TopicDiv;
   
 }
 
-//console.log(Tablar(['javascript', 'bootstrap', 'teknoloji', 'jquery', 'node.js']))
+console.log(Tablar(['javascript', 'bootstrap', 'teknoloji', 'jquery', 'node.js']))
 
 
   // GÖREV 4
